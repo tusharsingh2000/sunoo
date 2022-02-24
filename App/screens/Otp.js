@@ -5,6 +5,10 @@ import {generalStyles, authStyles} from '../styles/styles';
 import FIcon from 'react-native-vector-icons/FontAwesome';
 import OTPTextInput from 'react-native-otp-textinput';
 import Icon from 'react-native-vector-icons/Entypo';
+import {useDispatch} from 'react-redux';
+import TrackPlayer from 'react-native-track-player';
+import {useFocusEffect} from '@react-navigation/native';
+import {togglePlay} from '../redux/actions/actions';
 
 export const Otp = ({route, navigation}) => {
   let otpInput = useRef(null);
@@ -13,17 +17,28 @@ export const Otp = ({route, navigation}) => {
   const [error, setError] = useState(false);
   const {phone} = route.params;
 
+  const dispatch = useDispatch();
+
+  const stopMusic = async () => {
+    await TrackPlayer.stop();
+  };
+
+  useFocusEffect(() => {
+    dispatch(togglePlay(false));
+    stopMusic();
+  });
+
   const clickHandler = () => {
     setWarn(false);
-    // if (otp.length === 0) {
-    //   if (otp === '') {
-    navigation.push('HomeScreen');
-    //   } else {
-    //     setError(true);
-    //   }
-    // } else {
-    //   setWarn(true);
-    // }
+    if (otp.length === 4) {
+      if (otp === '1234') {
+        navigation.push('HomeScreen');
+      } else {
+        setError(true);
+      }
+    } else {
+      setWarn(true);
+    }
   };
 
   return (

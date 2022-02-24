@@ -18,16 +18,10 @@ export const BottomRoutes = () => {
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarInactiveTintColor: `${colors.lightBlue}`,
+          tabBarInactiveTintColor: `${colors.black}`,
           tabBarActiveTintColor: '#fff',
           tabBarStyle: {
-            backgroundColor: colors.darkBlue,
-            borderTopWidth: 0,
-            opacity: 0.8,
-            position: 'absolute',
-            bottom: 5,
-            marginHorizontal: 10,
-            borderRadius: 22,
+            backgroundColor: colors.lightBlue,
             paddingTop: 5,
           },
           tabBarHideOnKeyboard: true,

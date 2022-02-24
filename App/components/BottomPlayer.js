@@ -11,11 +11,10 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/AntDesign';
 import EIcon from 'react-native-vector-icons/Entypo';
 import {useDispatch, useSelector} from 'react-redux';
-import {toggleWidget} from '../redux/actions/actions';
+import {toggleWidget, togglePlay} from '../redux/actions/actions';
 import {colors} from '../constants';
 import {PlayerScreen} from './Payer';
 import TrackPlayer, {usePlaybackState, State} from 'react-native-track-player';
-import {ToggleFavorite} from '.';
 import TextTicker from 'react-native-text-ticker';
 
 export const BottomPlayer = () => {
@@ -53,9 +52,14 @@ export const BottomPlayer = () => {
     dispatch(toggleWidget(!isMinimized));
   };
 
+  const stopMusic = async () => {
+    await TrackPlayer.stop();
+    dispatch(togglePlay(false));
+  };
+
   console.log(isMinimized, isPlaying);
 
-  const togglePlay = async () => {
+  const togglePlayBack = async () => {
     const currentTrack = TrackPlayer.getCurrentTrack();
     if (currentTrack !== null) {
       if (playbackState === State.Paused) {
@@ -78,8 +82,7 @@ export const BottomPlayer = () => {
           <View
             style={[
               styles.modalContainer,
-              // eslint-disable-next-line react-native/no-inline-styles
-              {bottom: isKeyboardVisible ? 30 : 80},
+              {bottom: isKeyboardVisible ? 30 : 70},
             ]}>
             <TouchableOpacity
               onPress={toggleWidgetHandler}
@@ -105,17 +108,18 @@ export const BottomPlayer = () => {
                   <Text style={styles.artistName}>{musicData?.artist}</Text>
                 </TextTicker>
                 <View style={styles.controlBox}>
-                  <View>
-                    <ToggleFavorite info={musicData} />
-                  </View>
-                  <TouchableOpacity onPress={() => togglePlay(playbackState)}>
+                  <TouchableOpacity
+                    onPress={() => togglePlayBack(playbackState)}>
                     <Icon
                       name={
                         playbackState === State.Playing ? 'pause' : 'caretright'
                       }
-                      size={30}
+                      size={25}
                       color={'#fff'}
                     />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={stopMusic}>
+                    <Icon name={'close'} size={25} color={'#fff'} />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -131,9 +135,9 @@ export const BottomPlayer = () => {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.lightBlue,
     position: 'absolute',
-    width: 360,
+    marginHorizontal: -20,
   },
   mainContainer: {flexDirection: 'row'},
   image: {
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
   nameSection: {
     flexDirection: 'row',
     padding: 10,
-    width: '85%',
+    width: '90%',
     alignItems: 'center',
   },
   songName: {
@@ -161,8 +165,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 'auto',
-    // backgroundColor: 'green',
-    width: '30%',
-    justifyContent: 'space-around',
+    width: '40%',
+    justifyContent: 'space-between',
+    paddingHorizontal: 30,
   },
 });

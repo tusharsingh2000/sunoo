@@ -90,15 +90,16 @@ export const PlayerScreen = ({index}) => {
 
   return (
     <View style={styles.modalContainer}>
-      <TouchableOpacity
-        onPress={toggleWidgetHandler}
+      <View
         style={{
-          position: 'absolute',
-          top: 30,
-          left: 30,
+          // backgroundColor: 'red',
+          width: '100%',
+          padding: 30,
         }}>
-        <Icon name="down" size={30} />
-      </TouchableOpacity>
+        <TouchableOpacity onPress={toggleWidgetHandler}>
+          <Icon name="down" size={30} />
+        </TouchableOpacity>
+      </View>
       <View
         style={{
           height: 300,
@@ -182,10 +183,9 @@ export const PlayerScreen = ({index}) => {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.lightBlue,
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
     margin: -20,
   },
   image: {

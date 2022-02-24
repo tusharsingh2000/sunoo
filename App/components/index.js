@@ -8,6 +8,8 @@ import {LibraryViewCard} from './LibraryViewCard';
 import {SearchBox} from './SearchBox';
 import {ToggleFavorite} from './ToggleFavorite';
 import {BackButton} from './BackButton';
+import {ListingHeader} from './ListingHeader';
+import {ForegroundHeader} from './ForegroundHeader';
 
 export {
   HomeHeader,
@@ -20,4 +22,6 @@ export {
   SearchBox,
   ToggleFavorite,
   BackButton,
+  ListingHeader,
+  ForegroundHeader,
 };

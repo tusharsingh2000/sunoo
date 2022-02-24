@@ -1,32 +1,21 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import {useSelector} from 'react-redux';
 import {Artists, Genres, HomeHeader, Language} from '../../components';
 import {colors} from '../../constants';
-import TrackPlayer, {Capability, Event} from 'react-native-track-player';
 
 export const HomeScreen = ({navigation}) => {
-  const start = async () => {
-    // Set up the player
-    await TrackPlayer.setupPlayer();
-
-    await TrackPlayer.updateOptions({
-      capabilities: [
-        Capability.Play,
-        Capability.Pause,
-        Capability.SkipToNext,
-        Capability.SkipToPrevious,
-        Capability.Stop,
-        Capability.SeekTo,
-      ],
-      stopWithApp: true,
-    });
-  };
-  start();
-
-  // Event.RemotePlay
+  const isPlaying = useSelector(state => state.playerReducer.isPlaying);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[
+        styles.container,
+        // eslint-disable-next-line react-native/no-inline-styles
+        {
+          marginBottom: isPlaying ? 40 : 0,
+        },
+      ]}>
       <View style={styles.padding}>
         <HomeHeader title={'Hi, Welcome'} />
       </View>

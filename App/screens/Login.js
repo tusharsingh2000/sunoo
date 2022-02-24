@@ -10,17 +10,33 @@ import {colors} from '../constants';
 import {generalStyles, authStyles} from '../styles/styles';
 import Icon from 'react-native-vector-icons/Entypo';
 import FIcon from 'react-native-vector-icons/FontAwesome';
+import {useDispatch} from 'react-redux';
+import {togglePlay} from '../redux/actions/actions';
+import TrackPlayer from 'react-native-track-player';
+import {useFocusEffect} from '@react-navigation/native';
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('');
   const [warn, setWarn] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const stopMusic = async () => {
+    await TrackPlayer.stop();
+  };
+
+  useFocusEffect(() => {
+    dispatch(togglePlay(false));
+    stopMusic();
+  });
+
   const clickHandler = () => {
     setWarn(false);
-    // if (phone.length === 0) {
-    navigation.push('OtpScreen', {phone: phone});
-    // } else {
-    //   setWarn(true);
-    // }
+    if (phone.length === 10) {
+      navigation.push('OtpScreen', {phone: phone});
+    } else {
+      setWarn(true);
+    }
   };
 
   return (

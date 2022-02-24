@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   card: {
     padding: 30,
     borderWidth: 1,
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.lightBlue,
     borderRadius: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',

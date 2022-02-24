@@ -16,7 +16,6 @@ export const generalStyles = StyleSheet.create({
   },
   back: {
     position: 'absolute',
-    top: 1,
     left: 1,
   },
 });

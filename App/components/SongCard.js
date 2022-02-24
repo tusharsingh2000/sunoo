@@ -1,11 +1,16 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {ToggleFavorite} from '.';
+import Icon from 'react-native-vector-icons/Entypo';
 import {addToHistory, playSong, togglePlay} from '../redux/actions/actions';
+import {colors} from '../constants';
 
 export const SongCard = ({songlist, info, index}) => {
+  const isPlaying = useSelector(state => state.playerReducer.isPlaying);
+  const currentSong = useSelector(state => state.playerReducer.currentSong);
+
   const dispatch = useDispatch();
   const clickHandler = async () => {
     // Add a track to the queue
@@ -41,8 +46,26 @@ export const SongCard = ({songlist, info, index}) => {
           <View
             // onPress={() => toggleModal(index)}
             style={styles.nameContainer}>
-            <View>
-              <Text numberOfLines={1} style={styles.songName}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                width: 200,
+              }}>
+              {isPlaying && currentSong.id === info.id ? (
+                <Icon name="note" size={10} color={colors.lightBlue} />
+              ) : null}
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.songName,
+                  {
+                    color:
+                      isPlaying && currentSong.id === info.id
+                        ? colors.lightBlue
+                        : '#fff',
+                  },
+                ]}>
                 {info.songName}
               </Text>
             </View>
@@ -64,7 +87,10 @@ const styles = StyleSheet.create({
   pad5: {padding: 5},
   image: {height: 50, width: 50},
   nameContainer: {padding: 5, justifyContent: 'center'},
-  songName: {color: '#fff', fontWeight: '500', fontSize: 16, width: 200},
+  songName: {
+    fontWeight: '500',
+    fontSize: 16,
+  },
   artist: {color: '#fff', fontWeight: '300', fontSize: 12},
   index: {
     justifyContent: 'center',
