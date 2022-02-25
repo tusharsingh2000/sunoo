@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {useSelector} from 'react-redux';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
-import {colors} from '../../constants';
+import {colors, heights} from '../../constants';
 import {languages} from '../../data';
+import {generalStyles} from '../../styles/styles';
 
 export const ListByLanguage = ({route, navigation}) => {
   const {id} = route.params;
@@ -13,11 +14,11 @@ export const ListByLanguage = ({route, navigation}) => {
     <ParallaxScrollView
       backgroundColor={languages[id].color}
       contentBackgroundColor={colors.black}
-      parallaxHeaderHeight={400}
+      parallaxHeaderHeight={heights.foregroundHeader}
       renderStickyHeader={() => (
         <ListingHeader navigation={navigation} name={languages[id].name} />
       )}
-      stickyHeaderHeight={60}
+      stickyHeaderHeight={heights.stickyHeader}
       renderForeground={() => (
         <ForegroundHeader
           navigation={navigation}
@@ -25,7 +26,7 @@ export const ListByLanguage = ({route, navigation}) => {
           image={languages[id].image}
         />
       )}>
-      <View style={styles.margin}>
+      <View style={generalStyles.listingMargin}>
         {songlist.map((eachSong, index) => (
           <View key={index}>
             <SongCard
@@ -40,7 +41,3 @@ export const ListByLanguage = ({route, navigation}) => {
     </ParallaxScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  margin: {marginTop: 30},
-});

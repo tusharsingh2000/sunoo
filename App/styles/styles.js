@@ -1,5 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {colors, sizes} from '../constants';
+
+const {height} = Dimensions.get('window');
 
 export const generalStyles = StyleSheet.create({
   authcontainer: {
@@ -18,6 +20,7 @@ export const generalStyles = StyleSheet.create({
     position: 'absolute',
     left: 1,
   },
+  listingMargin: {marginTop: height / 30},
 });
 
 export const authStyles = StyleSheet.create({

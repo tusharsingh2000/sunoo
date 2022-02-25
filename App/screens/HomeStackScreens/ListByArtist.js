@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
-import {colors} from '../../constants';
+import {colors, heights} from '../../constants';
 import {artists} from '../../data';
 import {useSelector} from 'react-redux';
+import {generalStyles} from '../../styles/styles';
 
 export const ListByArtist = ({route, navigation}) => {
   const {id} = route.params;
@@ -14,12 +15,12 @@ export const ListByArtist = ({route, navigation}) => {
     <ParallaxScrollView
       backgroundColor={colors.lightBlue}
       contentBackgroundColor={colors.black}
-      parallaxHeaderHeight={400}
+      parallaxHeaderHeight={heights.foregroundHeader}
       renderStickyHeader={() => (
         <ListingHeader navigation={navigation} name={artists[id].name} />
       )}
       isForegroundTouchable
-      stickyHeaderHeight={60}
+      stickyHeaderHeight={heights.stickyHeader}
       renderForeground={() => (
         <ForegroundHeader
           navigation={navigation}
@@ -27,7 +28,7 @@ export const ListByArtist = ({route, navigation}) => {
           image={artists[id].image}
         />
       )}>
-      <View style={styles.margin}>
+      <View style={generalStyles.listingMargin}>
         {songlist.map((eachSong, index) => (
           <View key={index}>
             <SongCard
@@ -42,7 +43,3 @@ export const ListByArtist = ({route, navigation}) => {
     </ParallaxScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  margin: {marginTop: 30},
-});

@@ -4,8 +4,9 @@ import {View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {useSelector} from 'react-redux';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
-import {colors} from '../../constants';
+import {colors, heights} from '../../constants';
 import {genre} from '../../data';
+import {generalStyles} from '../../styles/styles';
 
 export const ListByGenre = ({route, navigation}) => {
   const {id} = route.params;
@@ -14,11 +15,11 @@ export const ListByGenre = ({route, navigation}) => {
     <ParallaxScrollView
       backgroundColor={colors.lightBlue}
       contentBackgroundColor={colors.black}
-      parallaxHeaderHeight={400}
+      parallaxHeaderHeight={heights.foregroundHeader}
       renderStickyHeader={() => (
         <ListingHeader navigation={navigation} name={genre[id].name} />
       )}
-      stickyHeaderHeight={60}
+      stickyHeaderHeight={heights.stickyHeader}
       renderForeground={() => (
         <ForegroundHeader
           navigation={navigation}
@@ -26,7 +27,7 @@ export const ListByGenre = ({route, navigation}) => {
           image={genre[id].image}
         />
       )}>
-      <View style={{marginTop: 30}}>
+      <View style={generalStyles.listingMargin}>
         {songlist.map((eachSong, index) => (
           <View key={index}>
             <SongCard

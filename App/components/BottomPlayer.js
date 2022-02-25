@@ -57,8 +57,6 @@ export const BottomPlayer = () => {
     dispatch(togglePlay(false));
   };
 
-  console.log(isMinimized, isPlaying);
-
   const togglePlayBack = async () => {
     const currentTrack = TrackPlayer.getCurrentTrack();
     if (currentTrack !== null) {

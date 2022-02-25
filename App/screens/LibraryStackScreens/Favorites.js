@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
-import {colors} from '../../constants';
+import {colors, heights} from '../../constants';
 import {languages} from '../../data';
 import {useSelector} from 'react-redux';
+import {generalStyles} from '../../styles/styles';
 
 export const FavoriteScreen = ({navigation}) => {
   const songlist = useSelector(state => state.playerReducer.favoriteList);
@@ -13,11 +14,11 @@ export const FavoriteScreen = ({navigation}) => {
     <ParallaxScrollView
       backgroundColor={colors.lightBlue}
       contentBackgroundColor={colors.black}
-      parallaxHeaderHeight={200}
+      parallaxHeaderHeight={heights.foregroundHeader}
       renderStickyHeader={() => (
         <ListingHeader navigation={navigation} name={'Your Favorites'} />
       )}
-      stickyHeaderHeight={60}
+      stickyHeaderHeight={heights.stickyHeader}
       renderForeground={() => (
         <ForegroundHeader
           navigation={navigation}
@@ -25,7 +26,7 @@ export const FavoriteScreen = ({navigation}) => {
           image={languages[1].image}
         />
       )}>
-      <View style={styles.margin}>
+      <View style={generalStyles.listingMargin}>
         {songlist.map((eachSong, index) => (
           <View key={index}>
             <SongCard
@@ -40,7 +41,3 @@ export const FavoriteScreen = ({navigation}) => {
     </ParallaxScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  margin: {marginTop: 30},
-});
