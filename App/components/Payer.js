@@ -19,6 +19,7 @@ import TrackPlayer, {
 import {useDispatch, useSelector} from 'react-redux';
 import {playSong, toggleWidget} from '../redux/actions/actions';
 import {ToggleFavorite} from '.';
+const {width, height} = Dimensions.get('window');
 
 export const PlayerScreen = ({index}) => {
   const [fav, setFav] = useState(false);
@@ -27,8 +28,6 @@ export const PlayerScreen = ({index}) => {
   const songlist = useSelector(state => state.playerReducer.currentPlayList);
   const musicData = useSelector(state => state.playerReducer.currentSong);
   const isMinimized = useSelector(state => state.playerReducer.isMinimized);
-
-  const {width} = Dimensions.get('window');
 
   const playbackState = usePlaybackState();
   const progress = useProgress();
@@ -92,17 +91,16 @@ export const PlayerScreen = ({index}) => {
     <View style={styles.modalContainer}>
       <View
         style={{
-          // backgroundColor: 'red',
           width: '100%',
           padding: 30,
         }}>
         <TouchableOpacity onPress={toggleWidgetHandler}>
-          <Icon name="down" size={30} />
+          <Icon name="down" size={30} color={'#fff'} />
         </TouchableOpacity>
       </View>
       <View
         style={{
-          height: 300,
+          height: height / 3,
         }}>
         <FlatList
           renderItem={renderImage}
@@ -121,10 +119,10 @@ export const PlayerScreen = ({index}) => {
         <View style={styles.nameSection}>
           <View>
             <View>
-              <Text style={styles.songName}>{musicData?.songName}</Text>
+              <Text style={styles.songName}>{musicData?.songName} </Text>
             </View>
             <View>
-              <Text style={styles.artistName}>{musicData?.artist}</Text>
+              <Text style={styles.artistName}>{musicData?.artist} </Text>
             </View>
           </View>
           <View onTouchStart={() => setFav(!fav)} style={styles.heart}>
@@ -189,8 +187,8 @@ const styles = StyleSheet.create({
     margin: -20,
   },
   image: {
-    height: 300,
-    width: 300,
+    height: height / 3,
+    width: height / 3,
   },
   nameSection: {
     flexDirection: 'row',

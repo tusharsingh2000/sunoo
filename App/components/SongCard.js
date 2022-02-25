@@ -52,9 +52,6 @@ export const SongCard = ({songlist, info, index}) => {
                 alignItems: 'center',
                 width: 200,
               }}>
-              {isPlaying && currentSong.id === info.id ? (
-                <Icon name="note" size={10} color={colors.lightBlue} />
-              ) : null}
               <Text
                 numberOfLines={1}
                 style={[
@@ -68,6 +65,11 @@ export const SongCard = ({songlist, info, index}) => {
                 ]}>
                 {info.songName}
               </Text>
+              {isPlaying && currentSong.id === info.id ? (
+                <View style={{padding: 5}}>
+                  <Icon name="note" size={10} color={colors.lightBlue} />
+                </View>
+              ) : null}
             </View>
             <View>
               <Text style={styles.artist}>{info.artist}</Text>

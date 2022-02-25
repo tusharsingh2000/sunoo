@@ -10,7 +10,7 @@ export const ListingHeader = ({navigation, name}) => {
         <BackButton navigation={navigation} />
       </View>
       <View>
-        <Text style={styles.headrerName}>{name}</Text>
+        <Text style={styles.headrerName}>{name} </Text>
       </View>
     </View>
   );

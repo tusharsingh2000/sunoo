@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
 import {colors, heights} from '../../constants';
