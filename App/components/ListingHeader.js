@@ -23,5 +23,5 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
 
-  headrerName: {fontSize: 18, fontWeight: '700', color: '#fff'},
+  headrerName: {fontSize: 16, fontWeight: '700', color: '#fff'},
 });

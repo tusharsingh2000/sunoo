@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   foregroundName: {position: 'absolute', bottom: 1, width: '100%'},
   boldText: {
     color: '#fff',
-    fontSize: 50,
+    fontSize: 32,
     fontWeight: '800',
     textAlign: 'center',
   },

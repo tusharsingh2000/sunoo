@@ -21,7 +21,7 @@ export const generalStyles = StyleSheet.create({
     position: 'absolute',
     left: 1,
   },
-  listingMargin: {marginTop: height < 650 ? height / 10 : height / 30},
+  listingMargin: {marginTop: height < 700 ? height / 10 : height / 30},
 });
 
 export const authStyles = StyleSheet.create({
