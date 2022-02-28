@@ -15,6 +15,8 @@ import TrackPlayer, {
   State,
   usePlaybackState,
   useProgress,
+  useTrackPlayerEvents,
+  Event,
 } from 'react-native-track-player';
 import {useDispatch, useSelector} from 'react-redux';
 import {playSong, toggleWidget} from '../redux/actions/actions';
@@ -28,6 +30,16 @@ export const PlayerScreen = ({index}) => {
   const songlist = useSelector(state => state.playerReducer.currentPlayList);
   const musicData = useSelector(state => state.playerReducer.currentSong);
   const isMinimized = useSelector(state => state.playerReducer.isMinimized);
+
+  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
+    if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
+      const track = await TrackPlayer.getTrack(event.nextTrack);
+      const {id} = track;
+      if (id > songNumber) {
+        forwardHandle();
+      }
+    }
+  });
 
   const playbackState = usePlaybackState();
   const progress = useProgress();

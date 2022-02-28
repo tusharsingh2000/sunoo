@@ -9,16 +9,11 @@ import {
 } from 'react-native';
 import {artists, songs} from '../data';
 import {generalStyles, textStyles} from '../styles/styles';
-import {useDispatch} from 'react-redux';
-import {updateCurrentPlayList} from '../redux/actions/actions';
 
 export const Artists = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const clickHandler = id => {
     const songlist = songs.filter(song => artists[id].name === song.artist);
-    dispatch(updateCurrentPlayList(songlist));
-    navigation.push('ListByArtist', {id: id});
+    navigation.push('ListByArtist', {id: id, songlist: songlist});
   };
 
   return (

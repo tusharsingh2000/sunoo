@@ -6,18 +6,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
 import {languages, songs} from '../data';
-import {updateCurrentPlayList} from '../redux/actions/actions';
 import {generalStyles, textStyles} from '../styles/styles';
 
 export const Language = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const clickHandler = id => {
     const songlist = songs.filter(song => languages[id].name === song.language);
-    dispatch(updateCurrentPlayList(songlist));
-    navigation.push('ListByLanguage', {id: id});
+    navigation.push('ListByLanguage', {id: id, songlist});
   };
   return (
     <View>

@@ -95,7 +95,7 @@ export const BottomPlayer = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}
-                  duration={3000}
+                  duration={5000}
                   loop
                   bounce
                   repeatSpacer={50}

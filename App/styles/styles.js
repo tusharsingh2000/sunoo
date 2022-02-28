@@ -2,7 +2,6 @@ import {Dimensions, StyleSheet} from 'react-native';
 import {colors, sizes} from '../constants';
 
 const {height} = Dimensions.get('window');
-console.log(height);
 
 export const generalStyles = StyleSheet.create({
   authcontainer: {

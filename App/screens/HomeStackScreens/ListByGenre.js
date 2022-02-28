@@ -1,15 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import {useSelector} from 'react-redux';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
 import {colors, heights} from '../../constants';
 import {genre} from '../../data';
 import {generalStyles} from '../../styles/styles';
 
 export const ListByGenre = ({route, navigation}) => {
-  const {id} = route.params;
-  const songlist = useSelector(state => state.playerReducer.currentPlayList);
+  const {id, songlist} = route.params;
   return (
     <ParallaxScrollView
       backgroundColor={colors.lightBlue}

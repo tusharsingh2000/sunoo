@@ -4,7 +4,12 @@ import TrackPlayer from 'react-native-track-player';
 import {useDispatch, useSelector} from 'react-redux';
 import {ToggleFavorite} from '.';
 import Icon from 'react-native-vector-icons/Entypo';
-import {addToHistory, playSong, togglePlay} from '../redux/actions/actions';
+import {
+  addToHistory,
+  playSong,
+  togglePlay,
+  updateCurrentPlayList,
+} from '../redux/actions/actions';
 import {colors} from '../constants';
 
 export const SongCard = ({songlist, info, index}) => {
@@ -27,6 +32,8 @@ export const SongCard = ({songlist, info, index}) => {
         artwork: eachSong.image,
       })),
     );
+    console.log('hh', await TrackPlayer.getQueue());
+    dispatch(updateCurrentPlayList(songlist));
     await TrackPlayer.skip(index);
     await TrackPlayer.play();
   };
