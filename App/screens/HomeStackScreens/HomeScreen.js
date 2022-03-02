@@ -5,7 +5,17 @@ import {Artists, Genres, HomeHeader, Language} from '../../components';
 import {colors} from '../../constants';
 
 export const HomeScreen = ({navigation}) => {
+  // const {token} = route.params;
+
   const isPlaying = useSelector(state => state.playerReducer.isPlaying);
+  const userData = useSelector(state => state.authReducer.userData);
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: 'Bearer ' + token,
+  //   },
+  // };
+  console.log(userData);
 
   return (
     <ScrollView

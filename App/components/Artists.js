@@ -28,7 +28,12 @@ export const Artists = ({navigation}) => {
             style={styles.liststyle}
             onPress={() => clickHandler(eachArtist.id)}>
             <View style={generalStyles.p10}>
-              <Image style={styles.imageStyle} source={eachArtist.image} />
+              <Image
+                style={styles.imageStyle}
+                source={{
+                  uri: `https://drive.google.com/uc?id=${artists[0].image}`,
+                }}
+              />
             </View>
             <View>
               <Text style={textStyles.nameCategory}>{eachArtist.name}</Text>

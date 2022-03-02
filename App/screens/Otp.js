@@ -1,23 +1,31 @@
 import React, {useRef, useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import {colors} from '../constants';
 import {generalStyles, authStyles} from '../styles/styles';
 import FIcon from 'react-native-vector-icons/FontAwesome';
 import OTPTextInput from 'react-native-otp-textinput';
 import Icon from 'react-native-vector-icons/Entypo';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 import {useFocusEffect} from '@react-navigation/native';
 import {togglePlay} from '../redux/actions/actions';
+import {loginApi} from '../redux/services/authService';
 
 export const Otp = ({route, navigation}) => {
+  const dispatch = useDispatch();
   let otpInput = useRef(null);
   const [otp, setOtp] = useState('');
   const [warn, setWarn] = useState(false);
   const [error, setError] = useState(false);
   const {phone} = route.params;
 
-  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.authReducer.isLoading);
 
   const stopMusic = async () => {
     await TrackPlayer.stop();
@@ -28,11 +36,19 @@ export const Otp = ({route, navigation}) => {
     stopMusic();
   });
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
+    const data = {
+      mobilenumber: phone,
+      otp: otp,
+    };
     setWarn(false);
     if (otp.length === 4) {
       if (otp === '1234') {
-        navigation.push('HomeScreen');
+        const result = await dispatch(loginApi(data));
+        console.log({result});
+        if (result.status === 200) {
+          navigation.push('HomeScreen');
+        }
       } else {
         setError(true);
       }
@@ -43,6 +59,22 @@ export const Otp = ({route, navigation}) => {
 
   return (
     <View style={[generalStyles.authcontainer, generalStyles.p10]}>
+      {isLoading ? (
+        <View
+          style={{
+            backgroundColor: colors.black,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            zIndex: 2,
+            opacity: 0.9,
+            justifyContent: 'center',
+          }}>
+          <ActivityIndicator animating size={'large'} />
+        </View>
+      ) : null}
       <View style={styles.background}>
         <FIcon
           name={'music'}

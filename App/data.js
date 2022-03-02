@@ -2,27 +2,28 @@ export const artists = [
   {
     id: 0,
     name: 'Charlie Puth',
-    image: require('./assets/images/artistImage/charlieputh.jpeg'),
+    image: '1G6bTvBYonv8dpqV32vTl82OfxKnE40pO',
+    // 'http://docs.google.com/uc?export=open&id=1G6bTvBYonv8dpqV32vTl82OfxKnE40pO',
   },
   {
     id: 1,
     name: 'Halsey',
-    image: require('./assets/images/artistImage/halsey.jpeg'),
+    image: 'zzVyNMxYGvUKsbNonzV6e73UtyDPzFZ',
   },
   {
     id: 2,
     name: 'Billie Elish',
-    image: require('./assets/images/artistImage/billie.jpeg'),
+    image: '19MyJGJav8Y5HqdZyYOJpOgPxR52HryGX',
   },
   {
     id: 3,
     name: 'Alec Benjamin',
-    image: require('./assets/images/artistImage/alec.jpeg'),
+    image: '1Vf609GqcYaTW57IIWARAIw2sX5G6zOCa',
   },
   {
     id: 4,
     name: 'Mohit Chauhan',
-    image: require('./assets/images/artistImage/mohit.jpeg'),
+    image: '1IUOFyPpHrEY5zl5Ee_hPMSiH-JsUKkhY',
   },
 ];
 
@@ -75,8 +76,9 @@ export const songs = [
     category: 'Pop',
     language: 'English',
     album: 'single',
-    url: require('./assets/englishsongs/attention.mp3'),
-    image: require('./assets/images/songImage/attention.jpeg'),
+    // url: 'http://docs.google.com/uc?export=open&id=1mOBAY-YxjNjttjQwsFjebJOAix9QYMXP',
+    url: '1V4Om-8fyDLe_BLHmn_WcpaBYYnF9JhCm',
+    image: '1JE6I27dyE5T_1oXfYi1qhXcqnGpJSvP3',
   },
   {
     id: 1,
@@ -85,8 +87,8 @@ export const songs = [
     category: 'Romantic',
     language: 'English',
     album: 'single',
-    url: require('./assets/englishsongs/let_me_down_slowly.mp3'),
-    image: require('./assets/images/songImage/letmedownslowly.jpeg'),
+    url: '1_SQllviGxBRetOWKIiNJHu0Mmzj',
+    image: '1tflHkKaRNAEDLlB_udhxl6zqCx-26nV0',
   },
   {
     id: 2,
@@ -95,8 +97,8 @@ export const songs = [
     category: 'Rock',
     language: 'English',
     album: 'single',
-    url: require('./assets/englishsongs/hymn_for_the_weekend.mp3'),
-    image: require('./assets/images/songImage/hymnfortheweekend.jpeg'),
+    url: '18oH__GggAjIuAfApEZwhyzMAVIdMPnmi',
+    image: '1uNkxJImvlBHvgQtzKE438wpXsJ38re85',
   },
   {
     id: 3,
@@ -105,8 +107,8 @@ export const songs = [
     category: 'Rock',
     language: 'English',
     album: 'single',
-    url: require('./assets/englishsongs/we_dont_talk_anymore.mp3'),
-    image: require('./assets/images/songImage/wedonttalkanymore.jpeg'),
+    url: '1CBP6vPdHhsxvj6b569jgV4cfJyy0AXTL',
+    image: '1r8q0ihJ5cmWsdm0w09R34OYVvJGtMlNP',
   },
   {
     id: 4,
@@ -115,8 +117,8 @@ export const songs = [
     category: 'Pop',
     language: 'English',
     album: 'single',
-    url: require('./assets/englishsongs/without_me.mp3'),
-    image: require('./assets/images/songImage/withoutme.jpeg'),
+    url: '1IdozFA6USCOux9XZ97S0vCianM_eN3Ac',
+    image: '1i2tlnJfTTNusSWG8j472iGUXiIDeXVyI',
   },
   {
     id: 5,
@@ -125,8 +127,8 @@ export const songs = [
     category: 'Pop',
     language: 'English',
     album: 'single',
-    url: require('./assets/englishsongs/lovely.mp3'),
-    image: require('./assets/images/songImage/lovely.jpeg'),
+    url: '1Y6ZyH9XDdHkYT3Rso3oW7FdP6UfM0KTj',
+    image: '1Yw65KXgX2QMjobDu7PS1tGrGnvzESDeL',
   },
   {
     id: 6,
@@ -135,8 +137,8 @@ export const songs = [
     category: 'Pop',
     language: 'Hindi',
     album: 'Rockstar',
-    url: require('./assets/hindisongs/phir_se_udd_chala.mp3'),
-    image: require('./assets/images/songImage/phirseuddchala.jpeg'),
+    url: '12CE9oLHsfWumSNYAXKTqwljc7I4bDXvv',
+    image: '15ZDoLSMr9om7dcWY6UgJ2-xX5lsnMrUQ',
   },
   {
     id: 7,
@@ -145,8 +147,8 @@ export const songs = [
     category: 'Pop',
     language: 'Hindi',
     album: 'New York',
-    url: require('./assets/hindisongs/tune_jo_na_kaha.mp3'),
-    image: require('./assets/images/songImage/tunejonakaha.jpeg'),
+    url: '1YdhRVRSsWWcFyn-VrWbFkXPE_qT3leMi',
+    image: '177rIwwGvDLe5llmGTA-uSYJQwnPFeyFO',
   },
 ];
 
