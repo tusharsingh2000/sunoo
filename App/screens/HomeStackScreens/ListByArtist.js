@@ -1,28 +1,31 @@
 import React from 'react';
 import {View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import {useSelector} from 'react-redux';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
 import {colors, heights} from '../../constants';
-import {artists} from '../../data';
 import {generalStyles} from '../../styles/styles';
 
 export const ListByArtist = ({route, navigation}) => {
-  const {id, songlist} = route.params;
+  const {artist} = route.params;
+  const songlist = useSelector(state => state.songsReducer.artistsongs);
+  console.log({songlist});
+
   return (
     <ParallaxScrollView
       backgroundColor={colors.lightBlue}
       contentBackgroundColor={colors.black}
       parallaxHeaderHeight={heights.foregroundHeader}
       renderStickyHeader={() => (
-        <ListingHeader navigation={navigation} name={artists[id].name} />
+        <ListingHeader navigation={navigation} name={artist.artistname} />
       )}
       isForegroundTouchable
       stickyHeaderHeight={heights.stickyHeader}
       renderForeground={() => (
         <ForegroundHeader
           navigation={navigation}
-          name={artists[id].name}
-          image={artists[id].image}
+          name={artist.artistname}
+          image={`https://drive.google.com/uc?id=${artist.image}`}
         />
       )}>
       <View style={generalStyles.listingMargin}>

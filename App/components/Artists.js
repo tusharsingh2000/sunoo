@@ -7,13 +7,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {artists, songs} from '../data';
+import {useDispatch, useSelector} from 'react-redux';
+import {getArtistSongs} from '../redux/services/songsService';
 import {generalStyles, textStyles} from '../styles/styles';
 
 export const Artists = ({navigation}) => {
-  const clickHandler = id => {
-    const songlist = songs.filter(song => artists[id].name === song.artist);
-    navigation.push('ListByArtist', {id: id, songlist: songlist});
+  const artists = useSelector(state => state.homeReducer.artists);
+  const dispatch = useDispatch();
+  const clickHandler = (id, artist) => {
+    dispatch(getArtistSongs(id));
+    navigation.push('ListByArtist', {artist: artist});
   };
 
   return (
@@ -26,17 +29,19 @@ export const Artists = ({navigation}) => {
           <TouchableOpacity
             key={eachArtist.id}
             style={styles.liststyle}
-            onPress={() => clickHandler(eachArtist.id)}>
+            onPress={() => clickHandler(eachArtist.id, eachArtist)}>
             <View style={generalStyles.p10}>
               <Image
                 style={styles.imageStyle}
                 source={{
-                  uri: `https://drive.google.com/uc?id=${artists[0].image}`,
+                  uri: `https://drive.google.com/uc?id=${eachArtist.image}`,
                 }}
               />
             </View>
             <View>
-              <Text style={textStyles.nameCategory}>{eachArtist.name}</Text>
+              <Text style={textStyles.nameCategory}>
+                {eachArtist.artistname}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}

@@ -1,21 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Artists, Genres, HomeHeader, Language} from '../../components';
 import {colors} from '../../constants';
+import {
+  getArtistsList,
+  getGenresList,
+  getLanguagesList,
+} from '../../redux/services/homeService';
 
 export const HomeScreen = ({navigation}) => {
-  // const {token} = route.params;
-
   const isPlaying = useSelector(state => state.playerReducer.isPlaying);
   const userData = useSelector(state => state.authReducer.userData);
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: 'Bearer ' + token,
-  //   },
-  // };
   console.log(userData);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenresList());
+    dispatch(getArtistsList());
+    dispatch(getLanguagesList());
+  }, [dispatch]);
 
   return (
     <ScrollView

@@ -7,30 +7,33 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {genre, songs} from '../data';
+import {useSelector} from 'react-redux';
 import {generalStyles, textStyles} from '../styles/styles';
 
 export const Genres = ({navigation}) => {
-  const clickHandler = id => {
-    const songlist = songs.filter(song => genre[id].name === song.category);
-    navigation.push('ListByGenre', {id: id, songlist});
-  };
+  const genres = useSelector(state => state.homeReducer.genres);
+  // const clickHandler = id => {
+  //   const songlist = songs.filter(song => genre[id].name === song.category);
+  //   // navigation.push('ListByGenre', {id: id, songlist});
+  // };
+
   return (
     <View>
       <View style={styles.title}>
         <Text style={textStyles.titleCategory}>Genres</Text>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {genre.map(eachGenre => (
+        {genres.map(eachGenre => (
           <TouchableOpacity
             key={eachGenre.id}
             style={styles.liststyle}
-            onPress={() => clickHandler(eachGenre.id)}>
+            // onPress={() => clickHandler(eachGenre.id)}>
+          >
             <View style={generalStyles.p10}>
               <Image style={styles.imageStyle} source={eachGenre.image} />
             </View>
             <View>
-              <Text style={textStyles.nameCategory}>{eachGenre.name}</Text>
+              <Text style={textStyles.nameCategory}>{eachGenre.genrename}</Text>
             </View>
           </TouchableOpacity>
         ))}

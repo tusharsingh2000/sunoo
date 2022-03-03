@@ -22,8 +22,6 @@ export const loginApi = input => async dispatch => {
     if (data.status === 200) {
       storeData(storageKey.AUTH_TOKEN, data.data.token);
       storeData(storageKey.USERDATA, JSON.stringify(data.data.user));
-      //   console.log(data.data.user);
-      //   console.log(data.data.user.token);
     }
     dispatch({type: USER_SIGNIN_SUCCESS, userData: data.data.user});
     return data;

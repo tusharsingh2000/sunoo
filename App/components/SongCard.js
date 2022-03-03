@@ -15,6 +15,7 @@ import {colors} from '../constants';
 export const SongCard = ({songlist, info, index}) => {
   const isPlaying = useSelector(state => state.playerReducer.isPlaying);
   const currentSong = useSelector(state => state.playerReducer.currentSong);
+  console.log(currentSong._id);
 
   const dispatch = useDispatch();
   const clickHandler = async () => {
@@ -26,10 +27,10 @@ export const SongCard = ({songlist, info, index}) => {
     await TrackPlayer.add(
       songlist.map(eachSong => ({
         id: eachSong.id,
-        url: eachSong.url,
-        title: eachSong.songName,
-        artist: eachSong.artist,
-        artwork: eachSong.image,
+        url: `http://docs.google.com/uc?export=open&id=${eachSong.url}`,
+        title: eachSong.songnNme,
+        artist: eachSong.artistName,
+        artwork: `https://drive.google.com/uc?id=${eachSong.image}`,
       })),
     );
     console.log('hh', await TrackPlayer.getQueue());
@@ -48,7 +49,12 @@ export const SongCard = ({songlist, info, index}) => {
           <View
             // onPress={() => toggleModal(index)}
             style={styles.pad5}>
-            <Image style={styles.image} source={info.image} />
+            <Image
+              style={styles.image}
+              source={{
+                uri: `https://drive.google.com/uc?id=${info.image}`,
+              }}
+            />
           </View>
           <View
             // onPress={() => toggleModal(index)}
@@ -65,21 +71,21 @@ export const SongCard = ({songlist, info, index}) => {
                   styles.songName,
                   {
                     color:
-                      isPlaying && currentSong.id === info.id
+                      isPlaying && currentSong._id === info._id
                         ? colors.lightBlue
                         : '#fff',
                   },
                 ]}>
-                {info.songName}
+                {info.songname}
               </Text>
-              {isPlaying && currentSong.id === info.id ? (
+              {isPlaying && currentSong._id === info._id ? (
                 <View style={{padding: 5}}>
                   <Icon name="note" size={10} color={colors.lightBlue} />
                 </View>
               ) : null}
             </View>
             <View>
-              <Text style={styles.artist}>{info.artist}</Text>
+              <Text style={styles.artist}>{info.artistId.artistname}</Text>
             </View>
           </View>
         </TouchableOpacity>

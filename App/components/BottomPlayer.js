@@ -48,6 +48,8 @@ export const BottomPlayer = () => {
   const isPlaying = useSelector(state => state.playerReducer.isPlaying);
   const isMinimized = useSelector(state => state.playerReducer.isMinimized);
 
+  console.log({musicList});
+
   const toggleWidgetHandler = async () => {
     dispatch(toggleWidget(!isMinimized));
   };
@@ -86,7 +88,12 @@ export const BottomPlayer = () => {
               onPress={toggleWidgetHandler}
               style={styles.mainContainer}>
               <View style={styles.imageContainer}>
-                <Image style={styles.image} source={musicData?.image} />
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: `https://drive.google.com/uc?id=${musicData?.image}`,
+                  }}
+                />
               </View>
               <View style={styles.nameSection}>
                 <TextTicker
@@ -101,9 +108,11 @@ export const BottomPlayer = () => {
                   repeatSpacer={50}
                   shouldAnimateTreshold={10}
                   marqueeDelay={1000}>
-                  <Text style={styles.songName}>{musicData?.songName}</Text>
+                  <Text style={styles.songName}>{musicData?.songname}</Text>
                   <EIcon name="dot-single" color="#fff" />
-                  <Text style={styles.artistName}>{musicData?.artist}</Text>
+                  <Text style={styles.artistName}>
+                    {musicData?.artistId.artistname}
+                  </Text>
                 </TextTicker>
                 <View style={styles.controlBox}>
                   <TouchableOpacity

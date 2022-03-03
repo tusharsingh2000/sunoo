@@ -61,7 +61,12 @@ export const PlayerScreen = ({index}) => {
   const renderImage = item => {
     return (
       <View style={{width, justifyContent: 'center', alignItems: 'center'}}>
-        <Image style={styles.image} source={musicData?.image} />
+        <Image
+          style={styles.image}
+          source={{
+            uri: `https://drive.google.com/uc?id=${musicData?.image}`,
+          }}
+        />
       </View>
     );
   };
@@ -131,10 +136,12 @@ export const PlayerScreen = ({index}) => {
         <View style={styles.nameSection}>
           <View>
             <View>
-              <Text style={styles.songName}>{musicData?.songName} </Text>
+              <Text style={styles.songName}>{musicData?.songname} </Text>
             </View>
             <View>
-              <Text style={styles.artistName}>{musicData?.artist} </Text>
+              <Text style={styles.artistName}>
+                {musicData?.artistId.artistname}{' '}
+              </Text>
             </View>
           </View>
           <View onTouchStart={() => setFav(!fav)} style={styles.heart}>

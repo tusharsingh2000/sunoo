@@ -7,7 +7,7 @@ import {generalStyles} from '../styles/styles';
 export const ForegroundHeader = ({navigation, name, image}) => {
   return (
     <View>
-      <Image style={styles.image} source={image} />
+      <Image style={styles.image} source={{uri: image}} />
       <View style={[generalStyles.back, {marginTop: 10}]}>
         <BackButton navigation={navigation} />
       </View>
