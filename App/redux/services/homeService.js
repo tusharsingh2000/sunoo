@@ -15,7 +15,7 @@ import {
 export const getGenresList = () => async dispatch => {
   dispatch({
     type: GET_GENRES_LOADING,
-    genresFetched: true,
+    genresFetched: false,
   });
   try {
     console.log(`${BASE_URL}/genre/genres`);
@@ -27,7 +27,11 @@ export const getGenresList = () => async dispatch => {
     });
     if (data.status === 200) {
       console.log(data.data, 'genre');
-      dispatch({type: GET_GENRES_SUCCESS, genresList: data.data});
+      dispatch({
+        type: GET_GENRES_SUCCESS,
+        genresList: data.data,
+        genresFetched: true,
+      });
     }
     return data;
   } catch (error) {
@@ -43,7 +47,7 @@ export const getGenresList = () => async dispatch => {
 export const getArtistsList = () => async dispatch => {
   dispatch({
     type: GET_ARTISTS_LOADING,
-    artistsFetched: true,
+    artistsFetched: false,
   });
   try {
     console.log(`${BASE_URL}/artist/artists`);
@@ -55,7 +59,11 @@ export const getArtistsList = () => async dispatch => {
     });
     if (data.status === 200) {
       console.log(data.data, 'artist');
-      dispatch({type: GET_ARTISTS_SUCCESS, artistsList: data.data});
+      dispatch({
+        type: GET_ARTISTS_SUCCESS,
+        artistsList: data.data,
+        artistsFetched: true,
+      });
     }
     return data;
   } catch (error) {
@@ -71,7 +79,7 @@ export const getArtistsList = () => async dispatch => {
 export const getLanguagesList = () => async dispatch => {
   dispatch({
     type: GET_LANGUAGES_LOADING,
-    languagesFetched: true,
+    languagesFetched: false,
   });
   try {
     console.log(`${BASE_URL}/language/languages`);
@@ -83,7 +91,11 @@ export const getLanguagesList = () => async dispatch => {
     });
     if (data.status === 200) {
       console.log(data.data, 'language');
-      dispatch({type: GET_LANGUAGES_SUCCESS, languagesList: data.data});
+      dispatch({
+        type: GET_LANGUAGES_SUCCESS,
+        languagesList: data.data,
+        languagesFetched: true,
+      });
     }
     return data;
   } catch (error) {

@@ -12,13 +12,13 @@ import {
 
 const initialState = {
   genresFetched: false,
-  genres: [],
+  genres: [1, 2, 3, 4],
 
   artistsFetched: false,
-  artists: [],
+  artists: [1, 2, 3, 4],
 
   languagesFetched: false,
-  languages: [],
+  languages: [1, 2, 3, 4],
 };
 
 export const homeReducer = (state = initialState, action) => {
@@ -33,6 +33,7 @@ export const homeReducer = (state = initialState, action) => {
       return {
         ...state,
         genres: action.genresList,
+        genresFetched: action.genresFetched,
       };
 
     case GET_GENRES_ERROR:
@@ -51,6 +52,7 @@ export const homeReducer = (state = initialState, action) => {
       return {
         ...state,
         artists: action.artistsList,
+        artistsFetched: action.artistsFetched,
       };
 
     case GET_ARTISTS_ERROR:
@@ -69,6 +71,7 @@ export const homeReducer = (state = initialState, action) => {
       return {
         ...state,
         languages: action.languagesList,
+        languagesFetched: action.languagesFetched,
       };
 
     case GET_LANGUAGES_ERROR:

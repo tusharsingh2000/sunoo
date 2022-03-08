@@ -1,40 +1,53 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import {useSelector} from 'react-redux';
 import {ForegroundHeader, ListingHeader, SongCard} from '../../components';
 import {colors, heights} from '../../constants';
-import {genre} from '../../data';
 import {generalStyles} from '../../styles/styles';
 
 export const ListByGenre = ({route, navigation}) => {
-  const {id, songlist} = route.params;
+  const {genre} = route.params;
+  const songlist = useSelector(state => state.songsReducer.genresongs);
+  const genresongsFetched = useSelector(
+    state => state.songsReducer.genresongsFetched,
+  );
   return (
     <ParallaxScrollView
       backgroundColor={colors.lightBlue}
       contentBackgroundColor={colors.black}
       parallaxHeaderHeight={heights.foregroundHeader}
       renderStickyHeader={() => (
-        <ListingHeader navigation={navigation} name={genre[id].name} />
+        <ListingHeader navigation={navigation} name={genre.genrename} />
       )}
       stickyHeaderHeight={heights.stickyHeader}
       renderForeground={() => (
         <ForegroundHeader
           navigation={navigation}
-          name={genre[id].name}
-          image={genre[id].image}
+          name={genre.genrename}
+          image={`https://drive.google.com/uc?id=${genre.image}`}
         />
       )}>
       <View style={generalStyles.listingMargin}>
-        {songlist.map((eachSong, index) => (
-          <View key={index}>
-            <SongCard
-              songlist={songlist}
-              navigation={navigation}
-              info={eachSong}
-              index={index}
-            />
+        {genresongsFetched ? (
+          <View>
+            {songlist.map((eachSong, index) => (
+              <View key={index}>
+                <SongCard
+                  songlist={songlist}
+                  navigation={navigation}
+                  info={eachSong}
+                  index={index}
+                />
+              </View>
+            ))}
           </View>
-        ))}
+        ) : (
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <ActivityIndicator />
+          </View>
+        )}
       </View>
     </ParallaxScrollView>
   );

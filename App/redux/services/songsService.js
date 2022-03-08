@@ -12,14 +12,17 @@ import {
   GET_LANGUAGE_SONGS_SUCCESS,
 } from '../actions/songsTypes';
 
-export const getGenreSongs = () => async dispatch => {
+export const getGenreSongs = id => async dispatch => {
   dispatch({
     type: GET_GENRE_SONGS_LOADING,
-    genresongsFetched: true,
+    genresongsFetched: false,
   });
   try {
-    console.log(`${BASE_URL}/genre/genres`);
-    const {data} = await axios.get(`${BASE_URL}/genre/genres`, {
+    console.log(`${BASE_URL}/genre/songs`);
+    const body = {
+      _id: id,
+    };
+    const {data} = await axios.post(`${BASE_URL}/genre/songs`, body, {
       headers: {
         // Overwrite Axios's automatically set Content-Type
         'Content-Type': 'application/json',
@@ -27,7 +30,11 @@ export const getGenreSongs = () => async dispatch => {
     });
     if (data.status === 200) {
       console.log(data.data, 'songs');
-      dispatch({type: GET_GENRE_SONGS_SUCCESS, genresongsList: data.data});
+      dispatch({
+        type: GET_GENRE_SONGS_SUCCESS,
+        genresongsList: data.data,
+        genresongsFetched: true,
+      });
     }
     return data;
   } catch (error) {
@@ -42,7 +49,7 @@ export const getGenreSongs = () => async dispatch => {
 export const getArtistSongs = id => async dispatch => {
   dispatch({
     type: GET_ARTIST_SONGS_LOADING,
-    artistsongsFetched: true,
+    artistsongsFetched: false,
   });
   try {
     console.log(`${BASE_URL}/artist/allsongs`);
@@ -57,7 +64,11 @@ export const getArtistSongs = id => async dispatch => {
     });
     if (data.status === 200) {
       console.log(data.data, 'songs');
-      dispatch({type: GET_ARTIST_SONGS_SUCCESS, artistsongsList: data.data});
+      dispatch({
+        type: GET_ARTIST_SONGS_SUCCESS,
+        artistsongsList: data.data,
+        artistsongsFetched: true,
+      });
     }
     return data;
   } catch (error) {
@@ -69,14 +80,17 @@ export const getArtistSongs = id => async dispatch => {
     return {message: error};
   }
 };
-export const getLanguageSongs = () => async dispatch => {
+export const getLanguageSongs = id => async dispatch => {
   dispatch({
     type: GET_LANGUAGE_SONGS_LOADING,
-    genresongsFetched: true,
+    languagesongsFetched: false,
   });
   try {
-    console.log(`${BASE_URL}/genre/genres`);
-    const {data} = await axios.get(`${BASE_URL}/genre/genres`, {
+    console.log(`${BASE_URL}/language/songs`);
+    const body = {
+      _id: id,
+    };
+    const {data} = await axios.post(`${BASE_URL}/language/songs`, body, {
       headers: {
         // Overwrite Axios's automatically set Content-Type
         'Content-Type': 'application/json',
@@ -87,6 +101,7 @@ export const getLanguageSongs = () => async dispatch => {
       dispatch({
         type: GET_LANGUAGE_SONGS_SUCCESS,
         languagesongsList: data.data,
+        languagesongsFetched: true,
       });
     }
     return data;

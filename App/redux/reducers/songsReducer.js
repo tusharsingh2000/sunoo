@@ -33,6 +33,7 @@ export const songsReducer = (state = initialState, action) => {
       return {
         ...state,
         genresongs: action.genresongsList,
+        genresongsFetched: action.genresongsFetched,
       };
 
     case GET_GENRE_SONGS_ERROR:
@@ -51,6 +52,7 @@ export const songsReducer = (state = initialState, action) => {
       return {
         ...state,
         artistsongs: action.artistsongsList,
+        artistsongsFetched: action.artistsongsFetched,
       };
 
     case GET_ARTIST_SONGS_ERROR:
@@ -69,6 +71,7 @@ export const songsReducer = (state = initialState, action) => {
       return {
         ...state,
         languagesongs: action.languagesongsList,
+        languagesongsFetched: action.languagesongsFetched,
       };
 
     case GET_LANGUAGE_SONGS_ERROR:

@@ -111,7 +111,7 @@ export const BottomPlayer = () => {
                   <Text style={styles.songName}>{musicData?.songname}</Text>
                   <EIcon name="dot-single" color="#fff" />
                   <Text style={styles.artistName}>
-                    {musicData?.artistId.artistname}
+                    {musicData.artistId ? musicData.artistId.artistname : ''}
                   </Text>
                 </TextTicker>
                 <View style={styles.controlBox}>

@@ -15,7 +15,6 @@ import {colors} from '../constants';
 export const SongCard = ({songlist, info, index}) => {
   const isPlaying = useSelector(state => state.playerReducer.isPlaying);
   const currentSong = useSelector(state => state.playerReducer.currentSong);
-  console.log(currentSong._id);
 
   const dispatch = useDispatch();
   const clickHandler = async () => {
@@ -26,7 +25,7 @@ export const SongCard = ({songlist, info, index}) => {
     await TrackPlayer.reset();
     await TrackPlayer.add(
       songlist.map(eachSong => ({
-        id: eachSong.id,
+        id: eachSong._id,
         url: `http://docs.google.com/uc?export=open&id=${eachSong.url}`,
         title: eachSong.songnNme,
         artist: eachSong.artistName,
@@ -84,9 +83,9 @@ export const SongCard = ({songlist, info, index}) => {
                 </View>
               ) : null}
             </View>
-            <View>
+            {/* <View>
               <Text style={styles.artist}>{info.artistId.artistname}</Text>
-            </View>
+            </View> */}
           </View>
         </TouchableOpacity>
         <View>

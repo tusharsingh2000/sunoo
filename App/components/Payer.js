@@ -31,13 +31,21 @@ export const PlayerScreen = ({index}) => {
   const musicData = useSelector(state => state.playerReducer.currentSong);
   const isMinimized = useSelector(state => state.playerReducer.isMinimized);
 
+  // console.log({musicData});
+
   useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
-      const {id} = track;
-      if (id > songNumber) {
-        forwardHandle();
-      }
+      // const {id} = track;
+      // console.log(
+      //   songlist,
+      //   songlist.indexOf(track.id),
+      //   songlist.indexOf(musicData.id),
+      // );
+      // if (songlist.indexOf(track.id) > songlist.indexOf(musicData.id)) {
+      //   console.log('hiii');
+      forwardHandle();
+      // }
     }
   });
 
@@ -80,12 +88,20 @@ export const PlayerScreen = ({index}) => {
     }
   };
 
-  const forwardHandle = async () => {
-    if (songNumber < songlist?.length - 1) {
-      songSlider.current?.scrollToIndex({index: songNumber + 1});
-      dispatch(playSong(songlist[songNumber + 1]));
-      await TrackPlayer.skip(songNumber + 1);
-      setSongNumber(songNumber + 1);
+  const forwardHandle = async str => {
+    console.log({str});
+    if (str === 'pressed') {
+      if (songNumber < songlist?.length - 1) {
+        songSlider.current?.scrollToIndex({index: songNumber + 1});
+        dispatch(playSong(songlist[songNumber + 1]));
+        await TrackPlayer.skip(songNumber + 1);
+        setSongNumber(songNumber + 1);
+      }
+    } else {
+      if (songNumber < songlist?.length - 1) {
+        dispatch(playSong(songlist[songNumber + 1]));
+        setSongNumber(songNumber + 1);
+      }
     }
   };
 
@@ -121,7 +137,7 @@ export const PlayerScreen = ({index}) => {
         }}>
         <FlatList
           renderItem={renderImage}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item._id}
           ref={songSlider}
           horizontal
           pagingEnabled
@@ -177,7 +193,7 @@ export const PlayerScreen = ({index}) => {
           </View>
         </View>
         <View style={styles.controlBox}>
-          <TouchableOpacity onPress={backwardHandle}>
+          <TouchableOpacity onPress={() => backwardHandle()}>
             <Icon name="stepbackward" size={40} color={'#fff'} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -189,7 +205,7 @@ export const PlayerScreen = ({index}) => {
               color={'#fff'}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={forwardHandle}>
+          <TouchableOpacity onPress={() => forwardHandle('pressed')}>
             <Icon name="stepforward" size={40} color={'#fff'} />
           </TouchableOpacity>
         </View>

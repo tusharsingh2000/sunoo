@@ -1,5 +1,5 @@
-import {Login} from './Login';
-import {Otp} from './Otp';
+import {Login} from './Authentication/Login';
+import {Otp} from './Authentication/Otp';
 import {SettingScreen} from './SettingScreen';
 import {LibraryScreen} from './LibraryStackScreens/LibraryScreen';
 import {FavoriteScreen} from './LibraryStackScreens/Favorites';
@@ -9,6 +9,7 @@ import {ListByArtist} from './HomeStackScreens/ListByArtist';
 import {ListByGenre} from './HomeStackScreens/ListByGenre';
 import {ListByLanguage} from './HomeStackScreens/ListByLanguage';
 import {RecentlyPlayedScreen} from './LibraryStackScreens/Recents';
+import {SplashScreen} from './SplashScreen/index';
 
 export {
   Login,
@@ -21,5 +22,6 @@ export {
   ListByGenre,
   ListByLanguage,
   RecentlyPlayedScreen,
+  SplashScreen,
   FavoriteScreen,
 };

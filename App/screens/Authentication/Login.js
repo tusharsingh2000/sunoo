@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import {colors} from '../constants';
-import {generalStyles, authStyles} from '../styles/styles';
+import {colors} from '../../constants';
+import {generalStyles, authStyles} from '../../styles/styles';
 import Icon from 'react-native-vector-icons/Entypo';
 import FIcon from 'react-native-vector-icons/FontAwesome';
 import {useDispatch} from 'react-redux';
-import {togglePlay} from '../redux/actions/actions';
+import {togglePlay} from '../../redux/actions/actions';
 import TrackPlayer from 'react-native-track-player';
 import {useFocusEffect} from '@react-navigation/native';
 
